@@ -164,6 +164,7 @@ const Projects = () => {
             </div> */}
 
             <motion.div
+            // @ts-ignore
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
