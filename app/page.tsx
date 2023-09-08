@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useRef, useEffect } from "react";
 import Div1 from "./components/div1";
 import Div2 from "./components/div2";
@@ -19,12 +18,12 @@ export default function Home() {
         const scrollContainer = scrollRef.current;
 
         if (scrollContainer) {
-            div2Ref.current?.scrollIntoView({
-                behavior: "auto",
-                // block: "start"
-            });
+            // div5Ref.current?.scrollIntoView({
+            //     behavior: "smooth",
+            //     // block: "start"
+            // });
         }
-    });
+    }, []);
 
     // useEffect(() => {
     //     const scrollContainer = scrollRef.current;
@@ -62,9 +61,15 @@ export default function Home() {
             <div ref={div2Ref}>
                 <Div2 />
             </div>
-            <Div3 />
-            <Div4 />
-            <Div5 />
+            <div ref={div3Ref}>
+                <Div3 />
+            </div>
+            <div ref={div4Ref}>
+                <Div4 />
+            </div>
+            <div ref={div5Ref}>
+                <Div5 />
+            </div>
         </main>
     );
 }

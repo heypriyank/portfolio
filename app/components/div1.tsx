@@ -39,9 +39,9 @@ export default function Div1() {
                     height={250}
                 />
             </div>
-            <div className="text-black whitespace-normal flex flex-col h-screen w-1/2 justify-between py-64">
+            <div className="text-eerieBlack whitespace-normal flex flex-col h-screen w-1/2 justify-between py-64">
                 <h1 className="text-6xl">{heading}</h1>
-                <p className="text-xl font-sans pb-10">
+                <p className="text-xl pb-10">
                     "Welcome to my digital realm! 🚀 With a passion for crafting
                     exceptional digital experiences, I'm the architect behind
                     the code, the wizard optimizing performance, and the
