@@ -16,6 +16,7 @@
   }
 }
 
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -24,4 +25,44 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    scroll-behavior: smooth;
+}
+
+.width__full {
+  min-width: 100vw;
+}
+
+.div1 {
+  background-image: url('../../../backdrops/wave-haikei.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+ .div2 {
+  background-image: url('../../../backdrops/wave-haikei\ \(1\).svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.div3 {
+  background-image: url('../../../backdrops/wave-haikei\ \(2\).svg');
+  background-size: cover;
+  background-position: center;
+} 
+
+.div4 {
+  background-image: url('../../../backdrops/wave-haikei\ \(3\).svg');
+  background-size: cover;
+  background-position: center;
+} 
+
+.div5 {
+  background-image: url('../../../backdrops/wave-haikei\ \(4\).svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.div1__text {
+  width: 50%;
+  height: 100%;
 }
