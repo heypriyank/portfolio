@@ -68,7 +68,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => (
     </VerticalTimelineElement>
 );
 
-const Experience: React.FC = ({ scrollRefProp, handleWheel }: any) => {
+const Experience: React.FC = ({ scrollRefProp, handleWheel, scrolling }: any) => {
     function handleEnableScoll(e: any) {
       scrollRefProp.current.removeEventListener("wheel", handleWheel);
     }
@@ -87,8 +87,8 @@ const Experience: React.FC = ({ scrollRefProp, handleWheel }: any) => {
             </motion.div>
 
             <div
-                onMouseEnter={handleEnableScoll}
-                onMouseLeave={handleDisableScroll}
+                onMouseEnter={scrolling ? () => {} : handleEnableScoll}
+                onMouseLeave={scrolling ? () => {} : handleDisableScroll}
                 className="mt-16 flex flex-col overflow-auto h-[62vh]"
             >
                 <VerticalTimeline className="vertical-timeline-custom-line">

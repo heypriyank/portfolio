@@ -32,6 +32,12 @@ body {
   min-width: 100vw;
 }
 
+.coming__soon {
+  background-image: url('../public/images/blob-haikei.svg');
+  background-size: cover;
+  background-position: center;
+}
+
 .div1 {
   background-image: url('../public/images/wave-haikei.svg');
   background-size: cover;

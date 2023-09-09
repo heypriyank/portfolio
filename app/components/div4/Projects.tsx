@@ -137,7 +137,7 @@ const ProjectCard = ({
     );
 };
 
-const Projects = ({ scrollRefProp, handleWheel }: any) => {
+const Projects = ({ scrollRefProp, handleWheel, scrolling }: any) => {
     const [active, setActive] = useState<string>(projects[0].id);
 
     function handleEnableScoll(e: any) {
@@ -157,20 +157,6 @@ const Projects = ({ scrollRefProp, handleWheel }: any) => {
                     Personal Projects.
                 </h2>
             </motion.div>
-
-            {/* <div className="w-full flex">
-                <motion.p
-                    variants={fadeIn("", "", 0.1, 1)}
-                    className="mt-4 text-taupe text-[18px] max-w-3xl leading-[30px]"
-                >
-                    These projects demonstrate my expertise with practical
-                    examples of some of my work, including brief descriptions
-                    and links to code repositories and live demos. They showcase
-                    my ability to tackle intricate challenges, adapt to various
-                    technologies, and efficiently oversee projects.
-                </motion.p>
-            </div> */}
-
             <motion.div
                 // @ts-ignore
                 variants={staggerContainer}
@@ -180,8 +166,8 @@ const Projects = ({ scrollRefProp, handleWheel }: any) => {
                 className={`${styles.innerWidth} mx-auto flex flex-col -ml-20`}
             >
                 <div
-                    onMouseEnter={handleEnableScoll}
-                    onMouseLeave={handleDisableScroll}
+                    onMouseEnter={scrolling ? () => {} : handleEnableScoll}
+                    onMouseLeave={scrolling ? () => {} : handleDisableScroll}
                     className="flex lg:flex-row flex-col min-h-[50vh] gap-5 max-w-[50vw] overflow-auto"
                 >
                     {projects.map((project, index) => (
@@ -193,6 +179,15 @@ const Projects = ({ scrollRefProp, handleWheel }: any) => {
                             handleClick={setActive}
                         />
                     ))}
+                </div>
+
+                <div className="w-full flex justify-end">
+                    <motion.p
+                        variants={fadeIn("", "", 0.1, 1)}
+                        className="text-taupe text-[18px] max-w-3xl leading-[30px]"
+                    >
+                        Awesome things are cooking daily!
+                    </motion.p>
                 </div>
             </motion.div>
         </div>

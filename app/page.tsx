@@ -6,6 +6,9 @@ const Div2 = dynamic(() => import("./components/div2"), { ssr: false });
 const Div3 = dynamic(() => import("./components/div3"), { ssr: false });
 const Div4 = dynamic(() => import("./components/div4"), { ssr: false });
 const Div5 = dynamic(() => import("./components/div5"), { ssr: false });
+const ComingSoon = dynamic(() => import("./components/comingSoon"), {
+    ssr: false,
+});
 
 export default function Home() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -19,6 +22,11 @@ export default function Home() {
     let deltaX = 0;
     let currentPage = 0;
     let scrolling = false;
+
+    const [windowDimensions, setWindowDimensions] = useState({
+        width: 0,
+        height: 0,
+    });
 
     function handleWheel(e: any) {
         e.preventDefault();
@@ -66,27 +74,57 @@ export default function Home() {
         };
     }, []);
 
+    useEffect(() => {
+        function getWindowDimensions() {
+            const { innerWidth: width, innerHeight: height } = window;
+            return { width, height };
+        }
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+        setWindowDimensions(getWindowDimensions());
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <main
             ref={scrollRef}
             style={{ overflowX: "auto", whiteSpace: "nowrap" }}
             className="flex min-h-screen items-center justify-between"
         >
-            <div ref={div1Ref}>
-                <Div1 />
-            </div>
-            <div ref={div2Ref}>
-                <Div2 />
-            </div>
-            <div ref={div3Ref}>
-                <Div3 scrollRefProp={scrollRef} handleWheel={handleWheel} />
-            </div>
-            <div ref={div4Ref}>
-                <Div4 scrollRefProp={scrollRef} handleWheel={handleWheel} />
-            </div>
-            <div ref={div5Ref}>
-                <Div5 />
-            </div>
+            {windowDimensions.height < windowDimensions.width ? (
+                <>
+                    <div ref={div1Ref}>
+                        <Div1 />
+                    </div>
+                    <div ref={div2Ref}>
+                        <Div2 />
+                    </div>
+                    <div ref={div3Ref}>
+                        <Div3
+                            scrollRefProp={scrollRef}
+                            handleWheel={handleWheel}
+                            scrolling={scrolling}
+                        />
+                    </div>
+                    <div ref={div4Ref}>
+                        <Div4
+                            scrollRefProp={scrollRef}
+                            handleWheel={handleWheel}
+                            scrolling={scrolling}
+                        />
+                    </div>
+                    <div ref={div5Ref}>
+                        <Div5 />
+                    </div>
+                </>
+            ) : (
+                <ComingSoon />
+            )}
         </main>
     );
 }

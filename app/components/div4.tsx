@@ -7,7 +7,7 @@ export default function Div4({ scrollRefProp, handleWheel }:any) {
             <Projects scrollRefProp={scrollRefProp} handleWheel={handleWheel} />
             <div className="">
                 <Image
-                    className="-mt-20"
+                    className="-mt-28"
                     src="/images/lovepriyank.png"
                     alt="PV with laptop"
                     width={250}

@@ -48,7 +48,7 @@ export default function Div1() {
                     <h1 className="text-6xl">{heading}</h1>
                 </div>
                 <div className="h-1/2">
-                    <p className="">
+                    <p className="text-base">
                         Welcome to my digital realm! 🚀 With a passion for
                         crafting exceptional digital experiences, I'm the
                         architect behind the code, the wizard optimizing
