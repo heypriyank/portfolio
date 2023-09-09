@@ -137,8 +137,16 @@ const ProjectCard = ({
     );
 };
 
-const Projects = () => {
+const Projects = ({ scrollRefProp, handleWheel }: any) => {
     const [active, setActive] = useState<string>(projects[0].id);
+
+    function handleEnableScoll(e: any) {
+        scrollRefProp.current.removeEventListener("wheel", handleWheel);
+    }
+    function handleDisableScroll(e: any) {
+        scrollRefProp.current.addEventListener("wheel", handleWheel);
+    }
+
     return (
         <div>
             <motion.div variants={textVariant()}>
@@ -164,14 +172,18 @@ const Projects = () => {
             </div> */}
 
             <motion.div
-            // @ts-ignore
+                // @ts-ignore
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.25 }}
                 className={`${styles.innerWidth} mx-auto flex flex-col -ml-20`}
             >
-                <div className="flex lg:flex-row flex-col min-h-[50vh] gap-5 max-w-[50vw] overflow-auto">
+                <div
+                    onMouseEnter={handleEnableScoll}
+                    onMouseLeave={handleDisableScroll}
+                    className="flex lg:flex-row flex-col min-h-[50vh] gap-5 max-w-[50vw] overflow-auto"
+                >
                     {projects.map((project, index) => (
                         <ProjectCard
                             key={project.id}

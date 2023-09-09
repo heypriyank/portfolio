@@ -85,6 +85,7 @@ const Contact = () => {
               placeholder:text-taupe
               text-timberWolf rounded-lg outline-none
               border-none font-medium"
+              maxLength={60}
             />
           </label>
           <label className="flex flex-col">
@@ -99,6 +100,7 @@ const Contact = () => {
               placeholder:text-taupe
               text-timberWolf rounded-lg outline-none
               border-none font-medium"
+              maxLength={60}
             />
           </label>
           <label className="flex flex-col">

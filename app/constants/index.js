@@ -25,6 +25,10 @@ import {
     rapidoLogo,
     levEdLogo,
     apricLogo,
+    linkedin,
+    githubLogo,
+    x,
+    stack
 } from "../assets";
 
 const technologies = [
@@ -223,4 +227,27 @@ const projects = [
     },
 ];
 
-export { technologies, experiences, projects };
+const socials = [
+    {
+        name: "LinkedIn",
+        icon: linkedin,
+        link: "https://linkedin.com/in/heypriyank"
+    },
+    {
+        name: "Github",
+        icon: githubLogo,
+        link: "https://github.com/heypriyank"
+    },
+    {
+        name: "Twitter",
+        icon: x,
+        link: "https://twitter.com/priyankscript"
+    },
+    {
+        name: "StackOverflow",
+        icon: stack,
+        link: "https://stackoverflow.com/users/20203998/priyank-verma"
+    }
+]
+
+export { technologies, experiences, projects, socials };

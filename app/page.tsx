@@ -1,10 +1,11 @@
 "use client";
-import { useRef, useEffect } from "react";
-import Div1 from "./components/div1";
-import Div2 from "./components/div2";
-import Div3 from "./components/div3";
-import Div4 from "./components/div4";
-import Div5 from "./components/div5";
+import { useRef, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+const Div1 = dynamic(() => import("./components/div1"), { ssr: false });
+const Div2 = dynamic(() => import("./components/div2"), { ssr: false });
+const Div3 = dynamic(() => import("./components/div3"), { ssr: false });
+const Div4 = dynamic(() => import("./components/div4"), { ssr: false });
+const Div5 = dynamic(() => import("./components/div5"), { ssr: false });
 
 export default function Home() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -13,41 +14,57 @@ export default function Home() {
     const div3Ref = useRef<HTMLDivElement | null>(null);
     const div4Ref = useRef<HTMLDivElement | null>(null);
     const div5Ref = useRef<HTMLDivElement | null>(null);
+    const refs = [div1Ref, div2Ref, div3Ref, div4Ref, div5Ref];
+
+    let deltaX = 0;
+    let currentPage = 0;
+    let scrolling = false;
+
+    function handleWheel(e: any) {
+        e.preventDefault();
+
+        if (e.deltaX > deltaX && currentPage < refs.length - 1) {
+            if (!scrolling) {
+                scrolling = true;
+                const divToGoTo = refs[currentPage + 1];
+                divToGoTo.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+                currentPage += 1;
+                setTimeout(() => {
+                    scrolling = false;
+                }, 1000);
+            }
+        } else if (e.deltaX < deltaX && currentPage > 0) {
+            if (!scrolling) {
+                scrolling = true;
+                const divToGoTo = refs[currentPage - 1];
+                divToGoTo.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+                currentPage -= 1;
+                setTimeout(() => {
+                    scrolling = false;
+                }, 1000);
+            }
+        }
+    }
 
     useEffect(() => {
         const scrollContainer = scrollRef.current;
 
         if (scrollContainer) {
-            // div5Ref.current?.scrollIntoView({
-            //     behavior: "smooth",
-            //     // block: "start"
-            // });
+            if (scrollContainer) {
+                scrollContainer.addEventListener("wheel", handleWheel);
+            }
         }
+
+        return () => {
+            scrollContainer?.removeEventListener("wheel", handleWheel);
+        };
     }, []);
-
-    // useEffect(() => {
-    //     const scrollContainer = scrollRef.current;
-
-    //     const handleScroll = (e: WheelEvent) => {
-    //         const scrollAmount = 4;
-    //         if (scrollRef.current) {
-    //             const currentScroll = scrollRef.current.scrollLeft;
-    //             scrollRef.current.scrollLeft =
-    //                 currentScroll + e.deltaX * scrollAmount;
-    //         }
-    //     };
-
-    //     if (scrollContainer) {
-    //         scrollContainer.addEventListener("wheel", handleScroll, {
-    //             passive: false,
-    //         });
-    //     }
-    //     return () => {
-    //         if (scrollContainer) {
-    //             scrollContainer.removeEventListener("wheel", handleScroll);
-    //         }
-    //     };
-    // }, []);
 
     return (
         <main
@@ -62,10 +79,10 @@ export default function Home() {
                 <Div2 />
             </div>
             <div ref={div3Ref}>
-                <Div3 />
+                <Div3 scrollRefProp={scrollRef} handleWheel={handleWheel} />
             </div>
             <div ref={div4Ref}>
-                <Div4 />
+                <Div4 scrollRefProp={scrollRef} handleWheel={handleWheel} />
             </div>
             <div ref={div5Ref}>
                 <Div5 />

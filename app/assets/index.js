@@ -45,6 +45,11 @@ import solcheck from './projects/solcheck.png'
 import twitter from './projects/twitter.webp'
 import ledger from './projects/ledger.png'
 
+import linkedin from './socials/linkedin.png'
+import githubLogo from './socials/github.png'
+import x from './socials/x.png'
+import stack from './socials/stack.png'
+
 export {
   logo,
   logotext,
@@ -87,5 +92,9 @@ export {
   redis,
   reactNative,
   rust,
-  solana
+  solana,
+  linkedin,
+  githubLogo,
+  x,
+  stack
 };
