@@ -33,16 +33,16 @@ export default function Div1() {
             <div className="-mt-10 mx-20">
                 <Image
                     className="drop-shadow-2xl mt-24"
-                    src="/images/pvwithlaptop.png"
+                    src="/images/pvWithLaptop.png"
                     alt="PV with laptop"
                     width={250}
                     height={250}
                 />
             </div>
-            <div className="text-eerieBlack whitespace-normal flex flex-col h-screen w-1/2 justify-between py-64">
+            <div className="text-eerieBlack font-extrabold whitespace-normal flex flex-col h-screen w-1/2 justify-between py-64">
                 <h1 className="text-6xl">{heading}</h1>
                 <p className="text-xl pb-10">
-                    "Welcome to my digital realm! 🚀 With a passion for crafting
+                    Welcome to my digital realm! 🚀 With a passion for crafting
                     exceptional digital experiences, I'm the architect behind
                     the code, the wizard optimizing performance, and the
                     guardian of seamless scalability. As a seasoned software
@@ -52,7 +52,7 @@ export default function Div1() {
                     for DevOps wizardry, I'm your go-to collaborator for turning
                     innovative concepts into robust, efficient realities. Let's
                     embark on a journey where code meets creativity and
-                    technology knows no bounds!" 🌟
+                    technology knows no bounds! 🌟
                 </p>
             </div>
         </div>

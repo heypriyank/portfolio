@@ -16,20 +16,25 @@ import resume from './icons/resume.png';
 import send from './icons/send.png';
 import sendHover from './icons/sendHover.png';
 
-import css from './tech/css.png';
 import docker from './tech/docker.png';
-import figma from './tech/figma.png';
+import elasticsearch from "./tech/elasticsearch.png"
+import etherium from "./tech/etherium.png"
 import git from './tech/git.png';
-import html from './tech/html.png';
+import go from './tech/go.png'
 import javascript from './tech/javascript.png';
+import kubernetes from './tech/kubernetes.png'
+import mongodb from './tech/mongodb.png'
+import mysql from './tech/mysql.png'
+import nextjs from './tech/next.webp'
 import nodejs from './tech/nodejs.png';
+import reactNative from './tech/react-native.png'
 import reactjs from './tech/reactjs.png';
+import redis from './tech/redis.png';
 import redux from './tech/redux.png';
+import rust from './tech/rust.png'
+import solana from './tech/solana.svg'
 import tailwind from './tech/tailwind.png';
 import typescript from './tech/typescript.png';
-import graphql from './tech/graphql.png';
-import postgresql from './tech/postgresql.png';
-import rubyrails from './tech/rubyrails.png';
 
 import rapidoLogo from './company/rapidoLogo.png'
 import levEdLogo from './company/levEdLogo.webp'
@@ -57,25 +62,30 @@ export {
   resume,
   send,
   sendHover,
-  css,
-  docker,
-  figma,
-  git,
-  graphql,
-  html,
-  javascript,
-  nodejs,
-  postgresql,
-  rubyrails,
-  reactjs,
-  redux,
-  tailwind,
-  typescript,
   rapidoLogo,
   levEdLogo,
   apricLogo,
   netflix,
   solcheck,
   twitter,
-  ledger
+  ledger,
+  elasticsearch,
+  etherium,
+  go,
+  javascript,
+  git,
+  docker,
+  nodejs,
+  reactjs,
+  redux,
+  tailwind,
+  typescript,
+  kubernetes,
+  mongodb,
+  mysql,
+  nextjs,
+  redis,
+  reactNative,
+  rust,
+  solana
 };

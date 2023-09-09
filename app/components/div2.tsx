@@ -7,6 +7,7 @@ export default function Div2() {
             <Tech/>
             <div className="flex justify-end">
                 <Image
+                    className="-mt-40"
                     src="/images/yumpriyank.png"
                     alt="PV with laptop"
                     width={250}
