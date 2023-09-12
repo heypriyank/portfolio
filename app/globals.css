@@ -100,7 +100,7 @@ body {
         0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .div1 {
         background-image: url("../public/images/wave-haikei-vertical.svg");
         background-size: cover;
