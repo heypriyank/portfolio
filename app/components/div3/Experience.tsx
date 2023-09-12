@@ -55,11 +55,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => (
         }
     >
         <div>
-            <h3 className="text-jetLight text-[24px] font-bold font-beckman tracking-[2px]">
+            <h3 className="text-jetLight text-[24px] font-bold font-beckman tracking-[2px] whitespace-normal">
                 {experience.title}
             </h3>
             <p
-                className="text-taupe text-[22px] font-semibold font-overcameBold tracking-[1px]"
+                className="text-taupe text-[22px] font-semibold font-overcameBold tracking-[1px] whitespace-normal"
                 style={{ margin: 0 }}
             >
                 {experience.company_name}
@@ -68,7 +68,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => (
     </VerticalTimelineElement>
 );
 
-const Experience: React.FC = ({ scrollRefProp, handleWheel, scrolling }: any) => {
+const Experience: React.FC = ({ scrollRefProp, handleWheel, scrolling, windowDimensions }: any) => {
     function handleEnableScoll(e: any) {
       scrollRefProp.current.removeEventListener("wheel", handleWheel);
     }
@@ -87,8 +87,8 @@ const Experience: React.FC = ({ scrollRefProp, handleWheel, scrolling }: any) =>
             </motion.div>
 
             <div
-                onMouseEnter={scrolling ? () => {} : handleEnableScoll}
-                onMouseLeave={scrolling ? () => {} : handleDisableScroll}
+                onMouseEnter={scrolling || windowDimensions?.height > windowDimensions?.width ? () => {} : handleEnableScoll}
+                onMouseLeave={scrolling || windowDimensions?.height > windowDimensions?.width ? () => {} : handleDisableScroll}
                 className="mt-16 flex flex-col overflow-auto h-[62vh]"
             >
                 <VerticalTimeline className="vertical-timeline-custom-line">
@@ -126,7 +126,7 @@ const Experience: React.FC = ({ scrollRefProp, handleWheel, scrolling }: any) =>
                 font-bold font-beckman items-center"
                             onClick={() =>
                                 window.open(
-                                    "https://drive.google.com/file/d/1qBfYA1zTdIpbFiK4PN5pXbLfvFWESB4C/view?usp=sharing",
+                                    "https://drive.google.com/file/d/1E6eip35ro-2yNIdd_yaHwBp8Vrpgf5BS/view?usp=sharing",
                                     "_blank"
                                 )
                             }

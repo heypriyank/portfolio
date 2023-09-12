@@ -1,14 +1,11 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-const Div1 = dynamic(() => import("./components/div1"), { ssr: false });
-const Div2 = dynamic(() => import("./components/div2"), { ssr: false });
-const Div3 = dynamic(() => import("./components/div3"), { ssr: false });
-const Div4 = dynamic(() => import("./components/div4"), { ssr: false });
-const Div5 = dynamic(() => import("./components/div5"), { ssr: false });
-const ComingSoon = dynamic(() => import("./components/comingSoon"), {
-    ssr: false,
-});
+const Div1 = dynamic(() => import("./components/div1"), { ssr: true });
+const Div2 = dynamic(() => import("./components/div2"), { ssr: true });
+const Div3 = dynamic(() => import("./components/div3"), { ssr: true });
+const Div4 = dynamic(() => import("./components/div4"), { ssr: true });
+const Div5 = dynamic(() => import("./components/div5"), { ssr: true });
 
 export default function Home() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +16,7 @@ export default function Home() {
     const div5Ref = useRef<HTMLDivElement | null>(null);
     const refs = [div1Ref, div2Ref, div3Ref, div4Ref, div5Ref];
 
-    let deltaX = 0;
+    let delta = 0;
     let currentPage = 0;
     let scrolling = false;
 
@@ -31,7 +28,7 @@ export default function Home() {
     function handleWheel(e: any) {
         e.preventDefault();
 
-        if (e.deltaX > deltaX && currentPage < refs.length - 1) {
+        if ((e.deltaX > delta || e.deltaY > delta) && currentPage < refs.length - 1) {
             if (!scrolling) {
                 scrolling = true;
                 const divToGoTo = refs[currentPage + 1];
@@ -42,9 +39,9 @@ export default function Home() {
                 currentPage += 1;
                 setTimeout(() => {
                     scrolling = false;
-                }, 1000);
+                }, 1100);
             }
-        } else if (e.deltaX < deltaX && currentPage > 0) {
+        } else if ((e.deltaX < delta || e.deltaY < delta) && currentPage > 0) {
             if (!scrolling) {
                 scrolling = true;
                 const divToGoTo = refs[currentPage - 1];
@@ -55,7 +52,7 @@ export default function Home() {
                 currentPage -= 1;
                 setTimeout(() => {
                     scrolling = false;
-                }, 1000);
+                }, 1100);
             }
         }
     }
@@ -64,15 +61,18 @@ export default function Home() {
         const scrollContainer = scrollRef.current;
 
         if (scrollContainer) {
-            if (scrollContainer) {
+            if (windowDimensions.height < windowDimensions.width) {
                 scrollContainer.addEventListener("wheel", handleWheel);
+            }
+            if (windowDimensions.height > windowDimensions.width) {
+                scrollContainer?.removeEventListener("wheel", handleWheel);
             }
         }
 
         return () => {
             scrollContainer?.removeEventListener("wheel", handleWheel);
         };
-    }, []);
+    }, [windowDimensions]);
 
     useEffect(() => {
         function getWindowDimensions() {
@@ -94,37 +94,33 @@ export default function Home() {
         <main
             ref={scrollRef}
             style={{ overflowX: "auto", whiteSpace: "nowrap" }}
-            className="flex min-h-screen items-center justify-between"
+            className="flex min-h-screen items-center justify-between max-sm:flex-col max-sm:max-w-[100vw]"
         >
-            {windowDimensions.height < windowDimensions.width ? (
-                <>
-                    <div ref={div1Ref}>
-                        <Div1 />
-                    </div>
-                    <div ref={div2Ref}>
-                        <Div2 />
-                    </div>
-                    <div ref={div3Ref}>
-                        <Div3
-                            scrollRefProp={scrollRef}
-                            handleWheel={handleWheel}
-                            scrolling={scrolling}
-                        />
-                    </div>
-                    <div ref={div4Ref}>
-                        <Div4
-                            scrollRefProp={scrollRef}
-                            handleWheel={handleWheel}
-                            scrolling={scrolling}
-                        />
-                    </div>
-                    <div ref={div5Ref}>
-                        <Div5 />
-                    </div>
-                </>
-            ) : (
-                <ComingSoon />
-            )}
+            <div ref={div1Ref}>
+                <Div1 />
+            </div>
+            <div ref={div2Ref}>
+                <Div2 />
+            </div>
+            <div ref={div3Ref}>
+                <Div3
+                    scrollRefProp={scrollRef}
+                    handleWheel={handleWheel}
+                    scrolling={scrolling}
+                    windowDimensions={windowDimensions}
+                />
+            </div>
+            <div ref={div4Ref}>
+                <Div4
+                    scrollRefProp={scrollRef}
+                    handleWheel={handleWheel}
+                    scrolling={scrolling}
+                    windowDimensions={windowDimensions}
+                />
+            </div>
+            <div ref={div5Ref}>
+                <Div5 />
+            </div>
         </main>
     );
 }

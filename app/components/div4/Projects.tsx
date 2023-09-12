@@ -35,9 +35,9 @@ const ProjectCard = ({
             variants={fadeIn("right", "spring", index * 0.5, 0.75)}
             className={`relative ${
                 active === id
-                    ? "lg:flex-[3.5] flex-[10] min-w-[30vw]"
-                    : "lg:flex-[0.5] flex-[2]"
-            } flex items-center justify-center min-w-[10vw]
+                    ? "lg:flex-[3.5] flex-[10] min-w-[30vw] max-sm:min-h-[40vh]"
+                    : "lg:flex-[1] flex-[2] min-w-[10vw] max-sm:min-h-[10vh]"
+            } flex items-center justify-center
         h-[420px] cursor-pointer card-shadow`}
             onClick={() => handleClick(id)}
         >
@@ -53,7 +53,7 @@ const ProjectCard = ({
             />
 
             {active !== id ? (
-                <div className="flex items-center justify-start pr-[4.5rem]">
+                <div className="flex items-center justify-start pr-[4.5rem] max-sm:justify-center">
                     <h3
                         className="font-extrabold font-beckman uppercase w-[200px] h-[30px] 
                             whitespace-nowrap sm:text-[27px] text-[18px] text-timberWolf tracking-[1px]
@@ -137,14 +137,14 @@ const ProjectCard = ({
     );
 };
 
-const Projects = ({ scrollRefProp, handleWheel, scrolling }: any) => {
+const Projects = ({ scrollRefProp, handleWheel, scrolling, windowDimensions }: any) => {
     const [active, setActive] = useState<string>(projects[0].id);
 
     function handleEnableScoll(e: any) {
-        scrollRefProp.current.removeEventListener("wheel", handleWheel);
+        scrollRefProp?.current?.removeEventListener("wheel", handleWheel);
     }
     function handleDisableScroll(e: any) {
-        scrollRefProp.current.addEventListener("wheel", handleWheel);
+        scrollRefProp?.current?.addEventListener("wheel", handleWheel);
     }
 
     return (
@@ -163,12 +163,12 @@ const Projects = ({ scrollRefProp, handleWheel, scrolling }: any) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.25 }}
-                className={`${styles.innerWidth} mx-auto flex flex-col -ml-20`}
+                className={`${styles.innerWidth} mx-auto flex flex-col -ml-20 max-sm:w-[90vw] max-sm:-ml-0 max-sm:h-[50vh]`}
             >
                 <div
-                    onMouseEnter={scrolling ? () => {} : handleEnableScoll}
-                    onMouseLeave={scrolling ? () => {} : handleDisableScroll}
-                    className="flex lg:flex-row flex-col min-h-[50vh] gap-5 max-w-[50vw] overflow-auto"
+                    onMouseEnter={scrolling || windowDimensions?.height > windowDimensions?.width ? () => {} : handleEnableScoll}
+                    onMouseLeave={scrolling || windowDimensions?.height > windowDimensions?.width ? () => {} : handleDisableScroll}
+                    className="flex lg:flex-row flex-col min-h-[50vh] gap-5 max-w-[50vw] overflow-auto max-sm:max-w-[100vw]"
                 >
                     {projects.map((project, index) => (
                         <ProjectCard
@@ -186,7 +186,7 @@ const Projects = ({ scrollRefProp, handleWheel, scrolling }: any) => {
                         variants={fadeIn("", "", 0.1, 1)}
                         className="text-taupe text-[18px] max-w-3xl leading-[30px]"
                     >
-                        Awesome things are cooking daily!
+                        Awesome things are being cooked daily!
                     </motion.p>
                 </div>
             </motion.div>

@@ -31,8 +31,8 @@ export default function Div1() {
         );
     }, []);
     return (
-        <div id="div1" className="min-h-screen flex width__full div1">
-            <div className="w-3/12 self-end">
+        <div id="div1" className="min-h-screen flex width__full div1 max-sm:flex-col  max-sm:items-center">
+            <div className="w-3/12 self-end max-sm:self-center">
                 <Image
                     className="drop-shadow-2xl"
                     src="/images/pvWithLaptop.png"
@@ -42,12 +42,12 @@ export default function Div1() {
                 />
             </div>
             <div
-                className={`${styles.sectionHeadText} whitespace-normal w-6/12`}
+                className={`${styles.sectionHeadText} whitespace-normal w-6/12 max-sm:w-11/12`}
             >
-                <div className="h-1/2 flex justify-center items-center">
-                    <h1 className="text-6xl">{heading}</h1>
+                <div className="h-1/2 flex justify-center items-center max-sm:h-[20vh]">
+                    <h1 className="text-6xl max-sm:text-2xl">{heading}</h1>
                 </div>
-                <div className="h-1/2">
+                <div className="h-1/2 max-sm:h-3/4 max-sm:text-justify max-sm:font-semibold">
                     <p className="text-base">
                         Welcome to my digital realm! 🚀 With a passion for
                         crafting exceptional digital experiences, I'm the
