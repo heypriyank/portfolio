@@ -163,7 +163,7 @@ const Projects = ({ scrollRefProp, handleWheel, scrolling, windowDimensions }: a
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.25 }}
-                className={`${styles.innerWidth} mx-auto flex flex-col -ml-20 max-sm:w-[90vw] max-sm:-ml-0 max-sm:h-[50vh]`}
+                className={`${styles.innerWidth} mx-auto flex flex-col -ml-20 max-sm:-ml-0 max-sm:h-[50vh]`}
             >
                 <div
                     onMouseEnter={scrolling || windowDimensions?.height > windowDimensions?.width ? () => {} : handleEnableScoll}
